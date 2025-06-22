@@ -2,9 +2,9 @@ const express = require('express');
 const cors = require('cors');
 require('dotenv').config();
 
-const connectDB = require('./config/db');
+const connectDB = require('./config/db.js');
 const shopRoutes = require('./routes/shoproutes.js');
-const authRoutes = require('./routes/authRoutes');
+const authRoutes = require('./routes/authRoutes.js');
 const lorryRoutes = require('./routes/lorryRoutes.js'); // Assuming you have lorry routes
 
 const app = express();
@@ -27,10 +27,10 @@ app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 const path = require('path');
 
 // Serve static files from the React app
-app.use(express.static(path.join(__dirname, '../afiya-ledger-frontend/dist')));
+app.use(express.static(path.join(__dirname, '../ledger-frontend/dist')));
 
 // Fallback for React routing
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, '../afiya-ledger-frontend/dist/index.html'));
+  res.sendFile(path.join(__dirname, '../ledger-frontend/dist/index.html'));
 });
 

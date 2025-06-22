@@ -2,9 +2,9 @@
   "name": "afiya-ledger-app",
   "version": "1.0.0",
   "scripts": {
-    "start": "node afiya-ledger-server/server.js",
-    "client": "cd afiya-ledger-frontend && npm run dev",
-    "build": "cd afiya-ledger-frontend && npm run build"
+    "start": "node ledger-server/server.js",
+    "client": "cd ledger-frontend && npm run dev",
+    "build": "cd ledger-frontend && npm run build"
   },
   "dependencies": {
     "express": "^4.18.2",
