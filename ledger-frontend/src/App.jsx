@@ -6,6 +6,7 @@ import New from './pages/NewOrders';
 import Home from './pages/Home';
 import Login from './pages/login';
 import Lorry from './pages/LorryService';
+import NotFound from './pages/NotFound';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/lorry" element={<Lorry />} />
         <Route path="/login" element={<Login />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </Router>
   );

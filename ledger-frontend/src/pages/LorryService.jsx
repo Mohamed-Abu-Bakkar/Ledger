@@ -34,7 +34,9 @@ const LorryService = () => {
     setEditId(service._id);
     setService({
       serviceName: service.serviceName || "",
-      services: Array.isArray(service.services) ? service.services.join(", ") : service.services || "",
+      services: Array.isArray(service.services)
+        ? service.services.join(", ")
+        : service.services || "",
       phoneNumber: service.phoneNumber || "",
     });
   };
@@ -48,7 +50,10 @@ const LorryService = () => {
       }
       const payload = {
         ...service,
-        services: service.services.split(',').map(s => s.trim()).filter(Boolean)
+        services: service.services
+          .split(",")
+          .map((s) => s.trim())
+          .filter(Boolean),
       };
       if (editId) {
         await api.put(`/lorryservices/${editId}`, payload);
@@ -63,7 +68,9 @@ const LorryService = () => {
         services: "",
         phoneNumber: "",
       });
+      useEffect(() => {
       fetchLorryServices();
+      }, []);
     } catch (err) {
       console.error(err);
       alert("Error saving service.");
@@ -91,21 +98,27 @@ const LorryService = () => {
                 type="text"
                 placeholder="Lorry Service Name"
                 value={service.serviceName}
-                onChange={(e) => handleServiceChange("serviceName", e.target.value)}
+                onChange={(e) =>
+                  handleServiceChange("serviceName", e.target.value)
+                }
                 className="w-full p-3 border border-green-400 rounded-lg focus:ring-2 focus:ring-green-600 focus:border-green-600 transition outline-none bg-green-50 text-green-900 placeholder-green-700 shadow-sm basis-1/3"
               />
               <input
                 type="text"
                 placeholder="Services (comma separated)"
                 value={service.services}
-                onChange={(e) => handleServiceChange("services", e.target.value)}
+                onChange={(e) =>
+                  handleServiceChange("services", e.target.value)
+                }
                 className="w-full p-3 border border-green-400 rounded-lg focus:ring-2 focus:ring-green-600 focus:border-green-600 transition outline-none bg-green-50 text-green-900 placeholder-green-700 shadow-sm basis-1/3"
               />
               <input
                 type="text"
                 placeholder="Phone Number"
                 value={service.phoneNumber}
-                onChange={(e) => handleServiceChange("phoneNumber", e.target.value)}
+                onChange={(e) =>
+                  handleServiceChange("phoneNumber", e.target.value)
+                }
                 className="w-full p-3 border border-green-400 rounded-lg focus:ring-2 focus:ring-green-600 focus:border-green-600 transition outline-none bg-green-50 text-green-900 placeholder-green-700 shadow-sm basis-1/3"
               />
             </div>
@@ -122,7 +135,11 @@ const LorryService = () => {
                   className="bg-gray-400 hover:bg-gray-500 text-white px-6 py-3 rounded-lg font-semibold shadow-md transition"
                   onClick={() => {
                     setEditId(null);
-                    setService({ serviceName: "", services: "", phoneNumber: "" });
+                    setService({
+                      serviceName: "",
+                      services: "",
+                      phoneNumber: "",
+                    });
                   }}
                 >
                   Cancel
@@ -132,7 +149,9 @@ const LorryService = () => {
           </form>
         </div>
         <div className="mt-8 bg-green-300 rounded-xl p-6 border border-green-400 shadow-sm w-full max-w-xl">
-          <h3 className="text-2xl font-bold text-green-900 mb-4">Search Services</h3>
+          <h3 className="text-2xl font-bold text-green-900 mb-4">
+            Search Services
+          </h3>
           <input
             type="text"
             placeholder="Search by service name..."
@@ -154,7 +173,9 @@ const LorryService = () => {
                     {service.serviceName}
                   </p>
                   <p className="text-base text-green-700">
-                    {Array.isArray(service.services) ? service.services.join(", ") : service.services}
+                    {Array.isArray(service.services)
+                      ? service.services.join(", ")
+                      : service.services}
                   </p>
                   <p className="text-base text-green-700">
                     Phone: {service.phoneNumber}
@@ -169,12 +190,16 @@ const LorryService = () => {
                     <button
                       className="mt-2 bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-lg font-semibold shadow ml-2"
                       onClick={async () => {
-                        if (window.confirm('Are you sure you want to delete this service?')) {
+                        if (
+                          window.confirm(
+                            "Are you sure you want to delete this service?"
+                          )
+                        ) {
                           try {
                             await api.delete(`/lorryservices/${service._id}`);
                             fetchLorryServices();
                           } catch (err) {
-                            alert('Error deleting service.');
+                            alert("Error deleting service.");
                           }
                         }
                       }}

@@ -1,15 +1,17 @@
 {
-  "name": "afiya-ledger-app",
+  "name": "ledger-app",
   "version": "1.0.0",
   "scripts": {
-    "start": "node ledger-server/server.js",
-    "client": "cd ledger-frontend && npm run dev",
-    "build": "cd ledger-frontend && npm run build"
+    "build": "cd ledger-frontend && npm install && npm run build",
+    "start": "node ledger-backend/server.js"
+  },
+  "engines": {
+    "node": "18.x"
   },
   "dependencies": {
-    "express": "^4.18.2",
-    "cors": "^2.8.5",
-    "dotenv": "^16.3.1",
-    "mongoose": "^7.0.3"
+    "express": "4.18",
+    "path-to-regexp": "^6.2.1",
+    "react-router-dom": "^6.30.1",
+    "vite": "^5.0.0"
   }
 }
