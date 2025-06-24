@@ -68,9 +68,7 @@ const LorryService = () => {
         services: "",
         phoneNumber: "",
       });
-      useEffect(() => {
-      fetchLorryServices();
-      }, []);
+      await fetchLorryServices();
     } catch (err) {
       console.error(err);
       alert("Error saving service.");
@@ -87,13 +85,13 @@ const LorryService = () => {
           🏠 Home
         </Link>
       </div>
-      <div className="min-h-screen flex flex-col items-center justify-top bg-green-100 ml-100 mr-100">
+      <div className="min-h-screen flex flex-col items-center justify-start bg-green-100 w-full px-2 sm:px-0">
         <h2 className="text-3xl font-extrabold mb-8 text-green-900 tracking-tight text-center">
           Add New Lorry Service
         </h2>
-        <div className="p-4 sm:p-8 bg-green-200 rounded-2xl shadow-xl border border-green-400 ml-40 mr-40">
+        <div className="p-4 sm:p-8 bg-green-200 rounded-2xl shadow-xl border border-green-400 w-full max-w-3xl mx-auto">
           <form onSubmit={handleSubmit}>
-            <div className="flex flex-row gap-2">
+            <div className="flex flex-col sm:flex-row gap-2">
               <input
                 type="text"
                 placeholder="Lorry Service Name"
@@ -101,7 +99,7 @@ const LorryService = () => {
                 onChange={(e) =>
                   handleServiceChange("serviceName", e.target.value)
                 }
-                className="w-full p-3 border border-green-400 rounded-lg focus:ring-2 focus:ring-green-600 focus:border-green-600 transition outline-none bg-green-50 text-green-900 placeholder-green-700 shadow-sm basis-1/3"
+                className="w-full p-3 border border-green-400 rounded-lg focus:ring-2 focus:ring-green-600 focus:border-green-600 transition outline-none bg-green-50 text-green-900 placeholder-green-700 shadow-sm"
               />
               <input
                 type="text"
@@ -110,7 +108,7 @@ const LorryService = () => {
                 onChange={(e) =>
                   handleServiceChange("services", e.target.value)
                 }
-                className="w-full p-3 border border-green-400 rounded-lg focus:ring-2 focus:ring-green-600 focus:border-green-600 transition outline-none bg-green-50 text-green-900 placeholder-green-700 shadow-sm basis-1/3"
+                className="w-full p-3 border border-green-400 rounded-lg focus:ring-2 focus:ring-green-600 focus:border-green-600 transition outline-none bg-green-50 text-green-900 placeholder-green-700 shadow-sm"
               />
               <input
                 type="text"
@@ -119,20 +117,20 @@ const LorryService = () => {
                 onChange={(e) =>
                   handleServiceChange("phoneNumber", e.target.value)
                 }
-                className="w-full p-3 border border-green-400 rounded-lg focus:ring-2 focus:ring-green-600 focus:border-green-600 transition outline-none bg-green-50 text-green-900 placeholder-green-700 shadow-sm basis-1/3"
+                className="w-full p-3 border border-green-400 rounded-lg focus:ring-2 focus:ring-green-600 focus:border-green-600 transition outline-none bg-green-50 text-green-900 placeholder-green-700 shadow-sm"
               />
             </div>
             <div className="flex justify-center items-center gap-4 mt-6">
               <button
                 type="submit"
-                className="bg-green-700 hover:bg-green-800 text-green-50 px-8 py-3 rounded-lg font-semibold shadow-md transition"
+                className="bg-green-700 hover:bg-green-800 text-green-50 px-8 py-3 rounded-lg font-semibold shadow-md transition w-full sm:w-auto"
               >
                 {editId ? "Update" : "Save it"}
               </button>
               {editId && (
                 <button
                   type="button"
-                  className="bg-gray-400 hover:bg-gray-500 text-white px-6 py-3 rounded-lg font-semibold shadow-md transition"
+                  className="bg-gray-400 hover:bg-gray-500 text-white px-6 py-3 rounded-lg font-semibold shadow-md transition w-full sm:w-auto"
                   onClick={() => {
                     setEditId(null);
                     setService({
@@ -148,7 +146,7 @@ const LorryService = () => {
             </div>
           </form>
         </div>
-        <div className="mt-8 bg-green-300 rounded-xl p-6 border border-green-400 shadow-sm w-full max-w-xl">
+        <div className="mt-8 bg-green-300 rounded-xl p-4 sm:p-6 border border-green-400 shadow-sm w-full max-w-xl mx-auto">
           <h3 className="text-2xl font-bold text-green-900 mb-4">
             Search Services
           </h3>
@@ -167,7 +165,7 @@ const LorryService = () => {
               .map((service, idx) => (
                 <div
                   key={idx}
-                  className="border border-green-300 rounded-2xl p-6 shadow-lg bg-green-50 realative size-full scale-105  hover:shadow-2xl  transition-shadow duration-300 "
+                  className="relative border border-green-300 rounded-2xl p-6 shadow-lg bg-green-50 w-full hover:shadow-2xl transition-shadow duration-300"
                 >
                   <p className="font-bold text-xl text-green-800 mb-2">
                     {service.serviceName}
