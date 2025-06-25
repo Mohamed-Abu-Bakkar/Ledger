@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "scripts": {
     "build": "cd ledger-frontend && npm install && npm run build",
-    "start": "cd ledger-backend && node server.js",
+    "start": "cd ledger-backend && npm install && node server.js",
     "client": "cd ledger-frontend && npm run dev"
   },
   "engines": {
