@@ -18,7 +18,6 @@ const LorryService = () => {
 
   const fetchLorryServices = async () => {
     try {
-      console.log('API base URL:', import.meta.env.VITE_API_BASE_URL);
 
       const res = await api.get("/lorryservices");
       setLorryServices(res.data);
