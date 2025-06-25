@@ -1,15 +1,25 @@
 const express = require('express');
 const cors = require('cors');
 const path = require('path');
-require('dotenv').config();
-
+// === Importing required modules
+// const mongoose = require('mongoose'); // Not needed here, as connectDB handles it
+// const dotenv = require('dotenv'); // Not needed here, as dotenv is already imported
+// === Load environment variables
+require('dotenv').config({ path: path.join(__dirname, '..', '.env') });
 const connectDB = require('./config/db.js');
 const shopRoutes = require('./routes/shoproutes.js');
 const authRoutes = require('./routes/authRoutes.js');
 const lorryRoutes = require('./routes/lorryRoutes.js');
 
 const app = express();
-connectDB();
+const MONGODB_URI = process.env.MONGO_URI;
+// === Connect to MongoDB
+connectDB(MONGODB_URI)
+  .then(() => console.log('✅ Connected to MongoDB'))
+  .catch(err => console.error('❌ MongoDB connection error:', err));
+
+
+
 
 app.use(cors());
 app.use(express.json());
@@ -28,5 +38,5 @@ app.get(/^\/(?!api\/).*/, (req, res) => {
 });
 
 
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 500;
 app.listen(PORT, () => console.log(`✅ Server running on http://localhost:${PORT}`));

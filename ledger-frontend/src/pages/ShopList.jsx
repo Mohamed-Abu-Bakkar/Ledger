@@ -3,13 +3,16 @@ import { api } from "../api";
 import { Link } from "react-router-dom";
 
 const ShopList = () => {
+  
   const [shops, setShops] = useState([]);
   const [search, setSearch] = useState("");
   const [payment, setPayment] = useState({});
 
   useEffect(() => {
+    
     const fetchShops = async () => {
       try {
+        
         const res = await api.get("/shops");
         setShops(res.data);
       } catch (err) {
